@@ -52,7 +52,7 @@ virtual machines
 ansible all -m ping
 ```
 
-![](/images/unable-to-ssh-to-other-VMs.png)
+![](/images/Unable-to-ssh-to-other-VMs.png)
 
 #### Creating the entries
 
