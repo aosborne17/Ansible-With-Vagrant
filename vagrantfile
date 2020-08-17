@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
 
  
 
-# creating third VM called aws 
+# creating third VM called aws using as an ansible controller 
   config.vm.define "aws" do |aws|
     
     aws.vm.box = "bento/ubuntu-18.04"
