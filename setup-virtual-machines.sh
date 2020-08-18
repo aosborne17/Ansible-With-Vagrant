@@ -5,8 +5,6 @@ vagrant up
 scp install-all-dependencies.yml vagrant@192.168.33.12:/home/vagrant/
 ssh vagrant@192.168.33.12 << EOF
 
-export ANSIBLE_HOST_KEY_CHECKING=False
-ansible web -m copy -a "src=/home/vagrant/app dest=/home/vagrant"
 
 sudo apt-get install sshpass -y
 sudo apt-get install software-properties-common -y
@@ -38,10 +36,7 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 exit
 
-# running my app in controller
 
-#sshpass -p 'vagrant' vagrant@192.168.33.12
-#ansible-playbook install-all-dependencies.yml
 
 exit
 EOF
@@ -59,10 +54,13 @@ exit
 
 EOF
 
+# SSH into controller
 ssh vagrant@192.168.33.12 << EOF
 
-export ANSIBLE_HOST_KEY_CHECKING=False#
+export ANSIBLE_HOST_KEY_CHECKING=False
+# Copy file into our web vm
 ansible web -m copy -a "src=/home/vagrant/app dest=/home/vagrant"
+# THIS RUNS OUR PLAYBOOK!!
 ansible-playbook install-all-dependencies.yml
 
 exit
