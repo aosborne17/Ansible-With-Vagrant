@@ -1,6 +1,7 @@
 #!/bin/bash
 
 vagrant up
+scp install-all-dependencies.yml vagrant@192.168.33.12:/home/vagrant/
 ssh vagrant@192.168.33.12 << EOF
 sudo apt-get install software-properties-common -y
 sudo apt-get install tree -y
@@ -35,6 +36,7 @@ EOF
 
 ssh vagrant@192.168.33.12 << EOF
 cd /etc/ansible
-ansible-playbook install.yml
+ansible web -m copy -a "src=/home/vagrant/app dest=/home/vagrant"
+ansible-playbook install-all-dependencies.yml
 exit
 EOF
