@@ -40,7 +40,7 @@ EOF
 # SSH into web VM
 ssh vagrant@192.168.33.10 << EOF
 
-
+echo export DB_HOST="mongodb://vagrant@192.168.33.11:27017/posts" >> ~/.bashrc
 sudo apt-get install sshpass -y
 sudo apt-get update -y
 sudo apt-get upgrade -y
