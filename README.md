@@ -46,3 +46,16 @@ running in our web browser
 - http://192.168.33.10
 - http://192.168.33.10/fibonacci/5
 - http://192.168.33.10/posts
+
+
+## Further Iterations
+
+- Create a variable within my setup file that means we don't have to constantly input
+the password
+
+- Take advantage of the ansible commands and using more of them within my playbook
+
+- Do the synchronisation through ansible as we wouldn't be able to sync using a VagrantFile on Ansible
+
+- Create a controller using an EC2 instance on AWS, this should work the same and would
+create a hybrid cloud as we have a combination of on premise and cloud compute services
