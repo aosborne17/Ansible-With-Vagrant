@@ -1,5 +1,8 @@
 # Running Our Virtual Machines
 
+
+#### For more in depth notes please refer to the detailed notes [HERE](Detailed-Notes.md)
+
 ## Prerequisites
 
 1) **Vagrant** can be installed [HERE](https://releases.hashicorp.com/vagrant/)
