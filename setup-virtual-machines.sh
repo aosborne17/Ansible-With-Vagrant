@@ -4,8 +4,6 @@ vagrant up
 
 scp install-all-dependencies.yml vagrant@192.168.33.12:/home/vagrant/
 ssh vagrant@192.168.33.12 << EOF
-
-
 sudo apt-get install sshpass -y
 sudo apt-get install software-properties-common -y
 sudo apt-get install tree -y
@@ -13,7 +11,6 @@ sudo apt-add-repository--yes--update ppa:ansible/ansible;
 sudo apt-get install ansible -y
 
 
-sudo su
 cd /etc/ansible
 echo "[web]
 192.168.33.10 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant" >> hosts
@@ -22,26 +19,21 @@ echo "[db]
 echo "[aws]
 192.168.33.12 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant" >> hosts
 
-# go into web server
-# sshpass -p 'vagrant' vagrant@192.168.33.10
-# sudo apt-get install sshpass -y
-# sudo apt-get update -y
-# sudo apt-get upgrade -y
-# exit
-
-#go into db server
-sshpass -p 'vagrant' vagrant@192.168.33.11
-sudo apt-get install sshpass -y
-sudo apt-get update -y
-sudo apt-get upgrade -y
-exit
-
-
-
 exit
 EOF
 
 
+# SSH into DB VM
+
+ssh vagrant@192.168.33.11 << EOF
+sudo apt-get install sshpass -y
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
+exit
+EOF
+
+# SSH into web VM
 ssh vagrant@192.168.33.10 << EOF
 
 echo export DB_HOST="mongodb://vagrant@192.168.33.11:27017/posts" >> ~/.bashrc
@@ -51,10 +43,9 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 
 exit
-
 EOF
 
-# SSH into controller
+# Finally SSH back into our controller
 ssh vagrant@192.168.33.12 << EOF
 
 export ANSIBLE_HOST_KEY_CHECKING=False
